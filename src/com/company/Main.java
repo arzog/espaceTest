@@ -69,6 +69,7 @@ public class Main {
         //endregion
 
         numberAtGivenPlaces(place1,place2,place3);
+        System.out.println("************************");
         numberAtGivenPlaces(places);
 
 
