@@ -11,11 +11,12 @@ public class Main {
 
     public static void main(String[] args) {
 
-        int place1 = 35;
-        int place2 = 40;
-        int place3 = 45;
-
-        int[] places = {35,40,45};
+        //region exo for
+//        int place1 = 35;
+//        int place2 = 40;
+//        int place3 = 45;
+//
+//        int[] places = {35,40,45};
 
         //region for v1
         /*
@@ -68,11 +69,13 @@ public class Main {
          */
         //endregion
 
-        numberAtGivenPlaces(place1,place2,place3);
-        System.out.println("************************");
-        numberAtGivenPlaces(places);
+//        numberAtGivenPlaces(place1,place2,place3);
+//        System.out.println("************************");
+//        numberAtGivenPlaces(places);
 
+//endregion
 
+        Exo_tombola.exo_tomb();
     }
 
     //version with given places

@@ -1,8 +1,10 @@
+package com.company;
+
 import java.util.Random;
 
 public class Exo_tombola {
 
-	public static void main(String[] args) {
+	public static void exo_tomb () {
 
 		int[] tickets = new int[10];
 
@@ -10,7 +12,7 @@ public class Exo_tombola {
 
 		for (int i = 0; i < tickets.length; i++) {
 
-			System.out.println("N° du lot " + (i + 1) + " Numéro de billet " + tickets[i]);
+			System.out.println("Num du lot " + (i + 1) + " Numero de billet " + tickets[i]);
 
 		}
 
@@ -18,18 +20,22 @@ public class Exo_tombola {
 
 	static void randomTickets(int tickets[]) {
 		int temp = 0;
+		boolean isInTab = false;
 		for (int i = 0; i < tickets.length; i++) {
 
 			do {
-				temp = randomInt(1, 15);
-				if (isInTab(temp, tickets)) {
+				temp = randomInt(1, 5);
+				isInTab = isInTab(temp, tickets);
+
+				if (isInTab) {
 					System.out.println(
-							"N° de billet " + temp + " attribué au lot N° " + (i + 1) + " – numéro de billet rejeté");
+							"Num de billet " + temp + " attribue au lot Num " + (i + 1) + "- numero de billet rejete");
 				}
-			} while (isInTab(temp, tickets));
+			} while (isInTab);
+
 			tickets[i] = temp;
 			System.out.println(
-					"N° de billet " + tickets[i] + " attribué au lot N° " + (i + 1) + " – numéro de billet accepté");
+					"Num de billet " + tickets[i] + " attribue au lot Num " + (i + 1) + " - numero de billet accepte");
 
 		}
 
