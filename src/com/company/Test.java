@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
 public class Test {
-	final static int[][] GAME_BOARD = new int[5][7];
-	final static int NBR_BOMBS = 3;
+	final static int[][] GAME_BOARD = new int[3][3];
+	final static int NBR_BOMBS = 8;
 	final static ArrayList<int[]> BOMB_POS = new ArrayList<int[]>();
 
 	public static void main(String[] args) {
@@ -10,7 +10,6 @@ public class Test {
 		int x_player = GAME_BOARD[0].length / 2;
 		int y_player = GAME_BOARD.length / 2;
 
-		System.out.println(GAME_BOARD.length);
 		setBombsPositions(x_player, y_player, BOMB_POS);
 		showBombsPositions(x_player, y_player, BOMB_POS);
 		letsPlay(x_player, y_player, BOMB_POS);
@@ -21,28 +20,14 @@ public class Test {
 
 		int tempBombX = 0;
 		int tempBombY = 0;
-		boolean isAlreadyExisting = false;
-		boolean isSamePositionPlayer = false;
-		boolean validation = false;
 
 		for (int i = 0; i < NBR_BOMBS; i++) {
 
 			do {
 				tempBombX = Utilities.randomInt(0, GAME_BOARD[0].length - 1);
 				tempBombY = Utilities.randomInt(0, GAME_BOARD.length - 1);
-				isSamePositionPlayer = (tempBombX == x_player && tempBombY == y_player) ? true : false;
-				isAlreadyExisting = isInTab(tempBombX, tempBombY, BOMB_POS);
 
-				if (isSamePositionPlayer) {
-					validation = true;
-				} else {
-					if (isAlreadyExisting) {
-						validation = true;
-					} else {
-						validation = false;
-					}
-				}
-			} while (validation);
+			} while (isInTab(tempBombX, tempBombY, BOMB_POS) || (tempBombX == x_player && tempBombY == y_player));
 
 			int bombPos[] = { tempBombY, tempBombX };
 
@@ -69,7 +54,6 @@ public class Test {
 		String playerMove = "";
 		int tempX_player = x_player;
 		int tempY_player = y_player;
-		boolean validation = false;
 
 		do {
 			playerMove = Utilities.getUserSpecificInput(
@@ -89,18 +73,8 @@ public class Test {
 
 			}
 
-			if (isInTab(tempX_player, tempY_player, BOMB_POS)) {
-				validation = false;
-			} else {
-				if (tempX_player <= 0 || tempY_player <= 0 || tempX_player >= GAME_BOARD[0].length
-						|| tempY_player >= GAME_BOARD.length) {
-					validation = false;
-				} else {
-					validation = true;
-				}
-			}
-
-		} while (validation);
+		} while (!isInTab(tempX_player, tempY_player, BOMB_POS) && (tempX_player > 0 && tempY_player > 0
+				&& tempX_player < GAME_BOARD[0].length && tempY_player < GAME_BOARD.length));
 		if (isInTab(tempX_player, tempY_player, BOMB_POS)) {
 
 			System.out.println("Bombe touchée - Vous avez perdu!");
